@@ -133,7 +133,7 @@ const getTaskName = (id) => {
 };
 
 export const createDefaultTask = () => {
-	if (state.projects.standaloneTasks > 0) return;
+	if (state.standaloneTasks.length > 0) return;
 
 	const task = {
 		id: generateId(),
