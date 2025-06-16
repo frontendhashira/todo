@@ -1,0 +1,291 @@
+* {
+  box-sizing: border-box;
+  list-style: none;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.visually--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.app {
+  display: flex;
+  gap: 20px;
+}
+
+.sidebar {
+  min-width: min(300px, 28%);
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
+}
+
+.tasks__container {
+  flex-grow: 1;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.projects__form,
+.modal__form {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 0.4rem;
+}
+
+input,
+select,
+textarea {
+  padding: 8px 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Buttons */
+
+button {
+  outline: none;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 4px;
+  border: none;
+  padding: 4px 0.3rem;
+}
+
+.btn--primary {
+  border-radius: 4px;
+  padding: 8px 0.5rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  line-height: normal;
+  height: max-content;
+  transition: background-color 0.3s ease;
+}
+
+.btn--primary:hover {
+  background-color: #45a049;
+}
+
+.btn--secondary {
+  background-color: #3b82f6;
+  border: 1px solid #3b82f6;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn--secondary:hover {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.projects__form input {
+  width: max(100px, 100%);
+}
+
+.projects__list {
+  max-height: 300px;
+}
+
+.project-item {
+  padding: 0 10px;
+  margin: 5px 0;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 2.5rem;
+  position: relative;
+}
+
+.project-item__menu {
+  position: absolute;
+  bottom: 80%;
+  right: -15%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 0.3s ease-in-out;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
+  padding: 0 5px;
+}
+
+.project-item.active {
+  background-color: #dcedc8;
+  font-weight: 600;
+}
+
+.todo__item {
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  border-left: 4px solid #ccc;
+}
+
+.todo__item.low {
+  border-left-color: #8bc34a;
+}
+
+.todo__item.medium {
+  border-left-color: #ff9800;
+}
+
+.todo__item.high {
+  border-left-color: #f44336;
+}
+
+.todo__item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  height: 1.5rem;
+}
+
+.todo__title {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.todo__description {
+  margin-bottom: 10px;
+}
+
+.todo__notes {
+  font-style: italic;
+  background-color: #fff9c4;
+  padding: 8px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.todo__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.todo__meta {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.todo__btn--delete {
+  background-color: #f44336;
+  color: #fafafa;
+
+  &:hover {
+    background-color: #d32f2f;
+  }
+}
+
+.todo__btn--edit {
+  background-color: #2196f3;
+  color: #f0f0f0;
+
+  &:hover {
+    background-color: #0b7dda;
+  }
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+@media (width <= 768px) {
+  .projects__form {
+    flex-direction: column;
+  }
+
+ .app {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .sidebar {
+    min-width: 100%;
+  }
+  
+  .project-item__menu {
+    right: 0;
+    left: 0;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 50%);
+  z-index: 999;
+  display: none;
+}
+
+.overlay.show {
+  display: block;
+}
+
+.all-tasks {
+  cursor: pointer;
+  color: #3b82f6;
+  text-decoration: underline;
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.all-tasks:hover {
+  color: #2563eb;
+}
+
+.all-tasks:focus {
+  outline: none;
+  color: #1d4ed8;
+}
+
+.all-tasks:active {
+  color: #1e40af;
+}
